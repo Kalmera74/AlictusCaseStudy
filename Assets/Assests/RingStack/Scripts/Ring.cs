@@ -7,7 +7,7 @@ public enum RingType
     Red,
     Green
 }
-public class RingManager : MonoBehaviour
+public class Ring : MonoBehaviour
 {
     [SerializeField] private LayerMask PersonLayerMask;
     [SerializeField] private LayerMask RingLayerMask;
@@ -48,7 +48,7 @@ public class RingManager : MonoBehaviour
 
             if (hit.collider.gameObject.CompareTag("Ring"))
             {
-                var ring = hit.collider.gameObject.GetComponent<RingManager>();
+                var ring = hit.collider.gameObject.GetComponent<Ring>();
                 if (ring)
                 {
                     if (ring.CompareRingType(RingType))
@@ -112,4 +112,6 @@ public class RingManager : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawRay(_ringDetectionRayOrigin, transform.TransformDirection(Vector3.down));
     }
+
+  
 }

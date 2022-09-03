@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] RingSelector RingSelector;
     [SerializeField] GameState GameState;
-    [SerializeField] RingManager SelectedRing;
-    [SerializeField] GhostManager[] GhostRings;
+    [SerializeField] TapToPlayAnimator TapToPlayAnimator;
+    [SerializeField] Ring SelectedRing;
+    [SerializeField] Person[] Persons;
+    [SerializeField] GhostRing[] GhostRings;
 
     private Vector3 _ringPositionAtSelection;
     private Vector3 _ringDropPosition;
@@ -58,8 +60,31 @@ public class GameManager : MonoBehaviour
             _ringDropPosition = _ringPositionAtSelection;
         }
 
-        SelectedRing.transform.DOLocalMove(_ringDropPosition, .25f);
+        SelectedRing.transform.DOLocalMove(_ringDropPosition, .25f).onComplete += () =>
+        {
+            SolvePuzzle();
+        };
         SetState(GameState.Idle);
+    }
+
+    private void SolvePuzzle()
+    {
+        foreach (var stack in Persons)
+        {
+            if (!stack.GetAllRingsAreSame())
+            {
+                return;
+            }
+        }
+
+        foreach (var person in Persons)
+        {
+            if (person.GetIsWinner())
+            {
+                person.PlayWinAnimation();
+                break;
+            }
+        }
     }
 
     private void MovingState()
@@ -122,7 +147,7 @@ public class GameManager : MonoBehaviour
     }
     private void SetGhostRing(Vector3 placeAt)
     {
-        GhostManager ghostOfSelectedRing = null;
+        GhostRing ghostOfSelectedRing = null;
         for (int i = 0; i < GhostRings.Length; i++)
         {
             var currentGhost = GhostRings[i];
@@ -149,7 +174,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        SelectedRing = ring.GetComponent<RingManager>();
+        SelectedRing = ring.GetComponent<Ring>();
         _ringPositionAtSelection = ring.transform.localPosition;
 
 
@@ -168,7 +193,11 @@ public class GameManager : MonoBehaviour
 
     private void InitState()
     {
-        throw new NotImplementedException();
+        if (Input.GetMouseButtonUp(0))
+        {
+            TapToPlayAnimator.Hide();
+            SetState(GameState.Idle);
+        }
     }
 
     private void SetState(GameState state)

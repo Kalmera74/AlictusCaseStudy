@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GhostManager : MonoBehaviour
+public class GhostRing : MonoBehaviour
 {
     [SerializeField] private RingType RingType;
 
