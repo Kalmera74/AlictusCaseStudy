@@ -4,36 +4,38 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PhotoController : MonoBehaviour
+namespace BathroomSelfie.Scripts
 {
-    [SerializeField] private Transform SpawnParent;
-    [SerializeField] private GameObject PhotoCanvas;
-    [SerializeField] private GameObject[] PhotoCanvass;
-    [SerializeField] private Sprite[] Photos;
-
-    private int _photoCanvasIndex = 0;
-    public void TakeAPhoto(OptionType photoIndex)
+    public class PhotoController : MonoBehaviour
     {
-        //   var photo = Instantiate(PhotoCanvas, Vector3.zero, Quaternion.identity);
-        var photo = GetPhotoCanvas();
-        var rectTransform = photo.GetComponent<RectTransform>();
-        var rotation = rectTransform.rotation;
-        rotation.z = UnityEngine.Random.rotation.z;
-        rectTransform.rotation = rotation;
+        [SerializeField] private Transform SpawnParent;
+        [SerializeField] private GameObject PhotoCanvas;
+        [SerializeField] private GameObject[] PhotoCanvass;
+        [SerializeField] private Sprite[] Photos;
 
-        var image = photo.GetComponent<Image>();
-        image.sprite = Photos[(int)photoIndex];
+        private int _photoCanvasIndex = 0;
+        public void TakeAPhoto(OptionType photoIndex)
+        {
+            //   var photo = Instantiate(PhotoCanvas, Vector3.zero, Quaternion.identity);
+            var photo = GetPhotoCanvas();
+            var rectTransform = photo.GetComponent<RectTransform>();
+            var rotation = rectTransform.rotation;
+            rotation.z = UnityEngine.Random.rotation.z;
+            rectTransform.rotation = rotation;
 
-        photo.transform.SetParent(SpawnParent);
-        photo.transform.localPosition = Vector3.zero;
+            var image = photo.GetComponent<Image>();
+            image.sprite = Photos[(int)photoIndex];
 
-        rectTransform.DOScale(Vector3.one, .25f);
-    }
+            photo.transform.SetParent(SpawnParent);
+            photo.transform.localPosition = Vector3.zero;
+
+            rectTransform.DOScale(Vector3.one, .25f);
+        }
 
 
-    private GameObject GetPhotoCanvas()
-    {
-        return PhotoCanvass[_photoCanvasIndex++];
+        private GameObject GetPhotoCanvas()
+        {
+            return PhotoCanvass[_photoCanvasIndex++];
+        }
     }
 }

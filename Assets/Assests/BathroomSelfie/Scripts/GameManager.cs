@@ -21,7 +21,7 @@ namespace BathroomSelfie.Scripts
         [SerializeField] private TapToPlayAnimator TapToPlayAnimator;
         [SerializeField] private MessageManager MessageManager;
         [SerializeField] private WomanAnimationController WomanAnimationController;
-        [SerializeField] private OpitonController OptionController;
+        [SerializeField] private OptionController OptionController;
         [SerializeField] private PhotoController PhotoController;
         private Vector2 _startPos = Vector2.zero;
         private Vector2 _endPos = Vector2.zero;
