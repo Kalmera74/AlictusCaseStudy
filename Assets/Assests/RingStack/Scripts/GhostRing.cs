@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class GhostRing : MonoBehaviour
+namespace RingStack.Scripts
 {
-    [SerializeField] private RingType RingType;
 
-    public bool CompareRingType(RingType ringType)
+
+    public class GhostRing : MonoBehaviour
     {
-        return RingType.Equals(ringType);
+        [SerializeField] private RingType RingType;
+
+        public bool CompareRingType(RingType ringType)
+        {
+            return RingType.Equals(ringType);
+        }
     }
 }

@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64c3e30a0223aff44896a8258af295ec, type: 2}
+  - {fileID: 2100000, guid: 5a0bbf4517ab55244b287687aa31a37b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -981,7 +981,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RingSelector: {fileID: 1104282733}
   GameState: 1
+  TapToPlayAnimator: {fileID: 0}
   SelectedRing: {fileID: 0}
+  Persons:
+  - {fileID: 1204577252}
+  - {fileID: 2032351170}
+  - {fileID: 1282415565}
   GhostRings:
   - {fileID: 295451611}
   - {fileID: 888458666}
@@ -999,6 +1004,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1204577252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6683165865526640486, guid: a0ba69b86097e47eda09b250839529ff, type: 3}
+  m_PrefabInstance: {fileID: 812393602}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09847692df2be9e48a3b06f1a91d916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1282415565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6683165865526640486, guid: a0ba69b86097e47eda09b250839529ff, type: 3}
+  m_PrefabInstance: {fileID: 1505925870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09847692df2be9e48a3b06f1a91d916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1505925870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1255,7 +1282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -3033667219593020291, guid: 4cd8108e47d3f4ef78871f3c805e6de2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1365,6 +1392,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7636839872765126066, guid: 48054fad4732aca44a8cb8cf9bdf5471, type: 3}
   m_PrefabInstance: {fileID: 1945368530}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2032351170 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6683165865526640486, guid: a0ba69b86097e47eda09b250839529ff, type: 3}
+  m_PrefabInstance: {fileID: 2131167913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09847692df2be9e48a3b06f1a91d916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2131167913
 PrefabInstance:
   m_ObjectHideFlags: 0

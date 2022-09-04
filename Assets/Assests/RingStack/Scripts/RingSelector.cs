@@ -2,25 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class RingSelector : MonoBehaviour
+namespace RingStack.Scripts
 {
 
-    [SerializeField] RayCastSelector RayCastSelector;
 
-    private void Awake()
+    public class RingSelector : MonoBehaviour
     {
-        if (RayCastSelector == null)
+
+        [SerializeField] RayCastSelector RayCastSelector;
+
+        private void Awake()
         {
-            RayCastSelector = GetComponent<RayCastSelector>();
+            if (RayCastSelector == null)
+            {
+                RayCastSelector = GetComponent<RayCastSelector>();
+            }
+        }
+        public GameObject TryAndGetRing()
+        {
+            var ring = RayCastSelector.CastRayFromCameraToMouseInWorld();
+
+            return ring;
         }
     }
-    public GameObject TryAndGetRing()
-    {
-        var ring = RayCastSelector.CastRayFromCameraToMouseInWorld();
 
-        return ring;
-    }
+
 }
-
-

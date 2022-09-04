@@ -2,73 +2,77 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Person : MonoBehaviour
+namespace RingStack.Scripts
 {
-    [SerializeField] Animator AnimatorController;
-    [SerializeField] List<Ring> Stack = new List<Ring>();
 
-    public void Add(Ring ring)
-    {
-        Stack.Add(ring);
-    }
-    public void Remove(Ring ring)
-    {
-        Stack.Remove(ring);
-    }
 
-    public bool GetAllRingsAreSame()
+    public class Person : MonoBehaviour
     {
-        Ring prevRing = null;
-        if (Stack.Count == 1)
+        [SerializeField] Animator AnimatorController;
+        [SerializeField] List<Ring> Stack = new List<Ring>();
+
+        public void Add(Ring ring)
         {
-            return false;
+            Stack.Add(ring);
         }
-        foreach (var ring in Stack)
+        public void Remove(Ring ring)
         {
-            if (prevRing == null)
+            Stack.Remove(ring);
+        }
+
+        public bool GetAllRingsAreSame()
+        {
+            Ring prevRing = null;
+            if (Stack.Count == 1)
             {
-                prevRing = ring;
+                return false;
             }
-            else
+            foreach (var ring in Stack)
             {
-                if (!prevRing.CompareRingType(ring.GetRingType()))
+                if (prevRing == null)
                 {
-                    return false;
+                    prevRing = ring;
+                }
+                else
+                {
+                    if (!prevRing.CompareRingType(ring.GetRingType()))
+                    {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        return true;
-    }
-    public bool GetIsWinner()
-    {
-        return Stack.Count == 0;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        var ring = other.gameObject.GetComponent<Ring>();
-
-        if (ring)
+        public bool GetIsWinner()
         {
-            Add(ring);
+            return Stack.Count == 0;
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-
-        var ring = other.gameObject.GetComponent<Ring>();
-
-        if (ring)
+        private void OnTriggerEnter(Collider other)
         {
-            Remove(ring);
-        }
-    }
 
-    internal void PlayWinAnimation()
-    {
-        AnimatorController.CrossFade("Win", .15f);
+            var ring = other.gameObject.GetComponent<Ring>();
+
+            if (ring)
+            {
+                Add(ring);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+
+            var ring = other.gameObject.GetComponent<Ring>();
+
+            if (ring)
+            {
+                Remove(ring);
+            }
+        }
+
+        internal void PlayWinAnimation()
+        {
+            AnimatorController.CrossFade("Win", .15f);
+        }
     }
 }
